@@ -1,9 +1,18 @@
 /* You can add global styles to this file, and also import other style files */
+
 @import "~bootstrap/dist/css/bootstrap.css";
+
+.control-label.required:after {
+  color: #d00;
+  content: "*";
+  position: absolute;
+  margin-left: 5px;
+  top: 7px;
+}
 
 .error-msg {
   color: #a94442;
 }
 .fix-error-icon {
-  top: 27px;
+  top: 19px;
 }

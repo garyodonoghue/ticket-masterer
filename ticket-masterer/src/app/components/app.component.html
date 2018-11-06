@@ -1,50 +1,60 @@
-<!--The content below is only a placeholder and can be replaced.-->
-<div class="container" style="text-align:center">
+<div style="background: aliceblue">
+<div class="container">
+  <div class="row">
+  <div class="col"></div>
+  <div class="col-6">
+    <!--The content below is only a placeholder and can be replaced.-->
+    <div class="container" style="text-align:center">
 
-  <h2>
-    Ticket Masterer
-  </h2>
+      <h2>
+        Ticket Masterer
+      </h2>
 
-  <h4>
-    Find tickets for all your favourite events
-  </h4>
+      <h4>
+        Find tickets for all your favourite events
+      </h4>
 
-  <h5>An API key is required to use this service, register <a href="https://developer-acct.ticketmaster.com/user/login">here</a>
-    to optain a key</h5>
+      <h5>An API key is required to use this service, register <a href="https://developer-acct.ticketmaster.com/user/login">here</a>
+        to optain a key</h5>
 
 
-  <form class="form-horizontal" [formGroup]="form">
+      <form class="form-horizontal" [formGroup]="form">
 
-    <div class="form-group" [ngClass]="displayFieldCss('apiKey')">
+        <div class="form-group" [ngClass]="displayFieldCss('apiKey')">
 
-      <div class="col-sm-12">
-        <label for="apiKey" class="control-label required">Enter your API key:</label>
-        <input type="text" id="apiKey" class="form-control" formControlName="apiKey">
-        <app-field-error-display [displayError]="isFieldValid('apiKey')" errorMsg="Please enter an API key"></app-field-error-display>
+          <div class="col-sm-12">
+            <label for="apiKey" class="control-label required">Enter your API key:</label>
+            <input type="text" id="apiKey" class="form-control" formControlName="apiKey">
+            <app-field-error-display [displayError]="isFieldValid('apiKey')" errorMsg="Please enter an API key"></app-field-error-display>
+          </div>
+        </div>
+
+        <br>
+
+        <div class="form-group" [ngClass]="displayFieldCss('searchTerm')">
+
+          <div class="col-sm-12">
+            <label for="searchTerm" class="control-label required">Enter your search term:</label>
+            <input type="text" id="searchTerm" class="form-control input-sm" formControlName="searchTerm">
+            <app-field-error-display [displayError]="isFieldValid('searchTerm')" errorMsg="Please enter a search term"></app-field-error-display>
+          </div>
+        </div>
+
+      </form>
+
+      <br>
+
+      <button class="btn btn-primary" (click)="getEvents()">Get Events</button>
+
+      <br><br>
+
+      <div *ngFor="let event of events">
+        {{ event.name }} - {{ event.url }}
       </div>
+
     </div>
-
-    <br>
-
-    <div class="form-group" [ngClass]="displayFieldCss('searchTerm')">
-
-      <div class="col-sm-12">
-        <label for="searchTerm" class="control-label required">Enter your search term:</label>
-        <input type="text" id="searchTerm" class="form-control input-sm" formControlName="searchTerm">
-        <app-field-error-display [displayError]="isFieldValid('searchTerm')" errorMsg="Please enter a search term"></app-field-error-display>
-      </div>
-    </div>
-
-  </form>
-
-  <br>
-
-  <button class="btn btn-primary" (click)="getEvents()">Get Events</button>
-
-  <br><br>
-
-  <div *ngFor="let event of events">
-    {{ event.name }} - {{ event.url }}
   </div>
-
+  <div class="col"></div>
+</div>
+</div>
 </div>
