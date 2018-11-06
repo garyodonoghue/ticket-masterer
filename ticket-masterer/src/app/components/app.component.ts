@@ -12,9 +12,9 @@ export class AppComponent {
 
   constructor(private ticketMasterService: TicketmasterService) {}
 
-  public getGigsForBand(eventName: String) {
+  public getGigsForBand(eventName: String, apiKey: String) {
     return this.ticketMasterService
-      .getGigsForBand(eventName)
+      .getGigsForBand(eventName, apiKey)
       .subscribe((data: JSON) => {
         this.events = data["_embedded"]["events"];
       });
