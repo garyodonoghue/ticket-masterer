@@ -1,1 +1,9 @@
 /* You can add global styles to this file, and also import other style files */
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.error-msg {
+  color: #a94442;
+}
+.fix-error-icon {
+  top: 27px;
+}

@@ -1,22 +1,67 @@
 import { Component } from "@angular/core";
 import { TicketmasterService } from "../services/ticketmaster.service";
+import {
+  FormGroup,
+  FormBuilder,
+  Validators,
+  FormControl
+} from "@angular/forms";
 
 @Component({
   selector: "app-root",
   templateUrl: "./app.component.html",
-  styleUrls: ["./app.component.css"]
+  styles: []
 })
 export class AppComponent {
-  title = "ticket-masterer";
   events: String[];
+  form: FormGroup;
 
-  constructor(private ticketMasterService: TicketmasterService) {}
+  constructor(
+    private ticketMasterService: TicketmasterService,
+    private formBuilder: FormBuilder
+  ) {}
 
-  public getGigsForBand(eventName: String, apiKey: String) {
-    return this.ticketMasterService
-      .getGigsForBand(eventName, apiKey)
-      .subscribe((data: JSON) => {
-        this.events = data["_embedded"]["events"];
-      });
+  ngOnInit() {
+    this.form = this.formBuilder.group({
+      apiKey: [null, Validators.required],
+      searchTerm: [null, Validators.required]
+    });
+  }
+
+  public getEvents() {
+    if (this.form.valid) {
+      return this.ticketMasterService
+        .getEvents(
+          this.form.get("apiKey").value,
+          this.form.get("searchTerm").value
+        )
+        .subscribe((data: JSON) => {
+          this.events = data["_embedded"]["events"];
+        });
+    } else {
+      this.validateAllFormFields(this.form);
+    }
+  }
+
+  validateAllFormFields(formGroup: FormGroup) {
+    Object.keys(formGroup.controls).forEach(field => {
+      const control = formGroup.get(field);
+      if (control instanceof FormControl) {
+        control.markAsTouched({ onlySelf: true });
+      } else if (control instanceof FormGroup) {
+        this.validateAllFormFields(control);
+      }
+    });
+  }
+
+  isFieldValid(field: string) {
+    return !this.form.get(field).valid && this.form.get(field).touched;
+  }
+
+  displayFieldCss(field: string) {
+    return {
+      "has-error": this.isFieldValid(field),
+      "has-feedback": this.isFieldValid(field)
+    };
   }
 }
