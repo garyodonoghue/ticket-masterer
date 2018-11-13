@@ -6,6 +6,7 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
+import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -18,12 +19,12 @@ export class AppComponent {
 
   constructor(
     private ticketMasterService: TicketmasterService,
-    private formBuilder: FormBuilder
+    private formBuilder: FormBuilder,
+    private route: ActivatedRoute
   ) {}
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      apiKey: [null, Validators.required],
       searchTerm: [null, Validators.required]
     });
   }
@@ -32,8 +33,8 @@ export class AppComponent {
     if (this.form.valid) {
       return this.ticketMasterService
         .getEvents(
-          this.form.get("apiKey").value,
-          this.form.get("searchTerm").value
+          this.form.get("searchTerm").value,
+          "woQznFCtl6peWX1JV0uaHc7DhABAVdFt"
         )
         .subscribe((data: JSON) => {
           this.events = data["_embedded"]["events"];
