@@ -1,5 +1,5 @@
-<div style="background: aliceblue">
-  <div class="container">
+<div style="background: aliceblue; min-height:100%">
+  <div class="container card">
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
@@ -54,7 +54,7 @@
           <div *ngFor="let event of events; let i = index">
             <button
               class="btn btn-block"
-              style="background: #5258ff; color: white"
+              style="background: #5258ff; color: white; font-weight: bold"
               (click)="buttonExpanded[i] = !buttonExpanded[i]"
             >
               {{ event.dates.start.localDate }} {{ event.name }} -

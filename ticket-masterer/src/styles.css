@@ -15,3 +15,8 @@
 .fix-error-icon {
   top: 19px;
 }
+
+html,
+body {
+  height: 100%;
+}
