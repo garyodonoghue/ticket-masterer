@@ -8,12 +8,23 @@ import { Observable } from "rxjs";
 export class TicketmasterService {
   constructor(private http: HttpClient) {}
 
-  getEvents(searchTerm: String, apiKey: String): Observable<JSON> {
+  apiKey = "woQznFCtl6peWX1JV0uaHc7DhABAVdFt";
+
+  getListEvents(searchTerm: String): Observable<JSON> {
     return this.http.get<JSON>(
       "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
-        apiKey +
+        this.apiKey +
         "&keyword=" +
         searchTerm
+    );
+  }
+
+  getEventDetails(eventId: string): Observable<JSON> {
+    return this.http.get<JSON>(
+      "https://app.ticketmaster.com/inventory-status/v1/availability?apikey=" +
+        this.apiKey +
+        "&events=" +
+        eventId
     );
   }
 }

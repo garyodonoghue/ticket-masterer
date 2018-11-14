@@ -1,0 +1,15 @@
+.tickets-available {
+  color: green !important;
+}
+
+.few-tickets-left {
+  color: orange !important;
+}
+
+.tickets-not-available {
+  color: red !important;
+}
+
+.unknown {
+  color: yellow !important;
+}

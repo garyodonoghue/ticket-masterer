@@ -31,9 +31,8 @@ export class AppComponent {
   public getEvents() {
     if (this.form.valid) {
       return this.ticketMasterService
-        .getEvents(
-          this.form.get("searchTerm").value,
-          "woQznFCtl6peWX1JV0uaHc7DhABAVdFt"
+        .getListEvents(
+          this.form.get("searchTerm").value          
         )
         .subscribe((data: JSON) => {
           this.events = data["_embedded"]["events"];
