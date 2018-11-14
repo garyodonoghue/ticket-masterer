@@ -6,7 +6,6 @@ import {
   Validators,
   FormControl
 } from "@angular/forms";
-import { ActivatedRoute } from "@angular/router";
 
 @Component({
   selector: "app-root",
@@ -14,13 +13,13 @@ import { ActivatedRoute } from "@angular/router";
   styles: []
 })
 export class AppComponent {
-  events: String[];
+  events: String[] = [];
   form: FormGroup;
+  buttonExpanded = new Map<number, boolean>();
 
   constructor(
     private ticketMasterService: TicketmasterService,
-    private formBuilder: FormBuilder,
-    private route: ActivatedRoute
+    private formBuilder: FormBuilder
   ) {}
 
   ngOnInit() {

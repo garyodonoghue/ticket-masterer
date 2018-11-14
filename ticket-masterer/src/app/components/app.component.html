@@ -3,54 +3,71 @@
     <div class="row">
       <div class="col"></div>
       <div class="col-6">
-        <!--The content below is only a placeholder and can be replaced.-->
+        <!-- The content below is only a placeholder and can be replaced. -->
         <div class="container" style="text-align:center">
+          <h2>Ticket Masterer</h2>
 
-          <h2>
-            Ticket Masterer
-          </h2>
+          <h4>Find tickets for all your favourite events</h4>
 
-          <h4>
-            Find tickets for all your favourite events
-          </h4>
-
-          <!--<h5>A TicketMaster account is required to use this service, click <a href="https://oauth.ticketmaster.com/oauth/authorize?client_id=woQznFCtl6peWX1JV0uaHc7DhABAVdFt&scope=all&response_type=code&redirect_uri=http://localhost:8080">here</a>
-            to login</h5>-->
-
+          <!--
+            <h5>A TicketMaster account is required to use this service, click <a href="https://oauth.ticketmaster.com/oauth/authorize?client_id=woQznFCtl6peWX1JV0uaHc7DhABAVdFt&scope=all&response_type=code&redirect_uri=http://localhost:8080">here</a>
+            to login</h5>
+          -->
 
           <form class="form-horizontal" [formGroup]="form">
-
             <div class="form-group" [ngClass]="displayFieldCss('searchTerm')">
-
               <div class="col-sm-12">
-                <label for="searchTerm" class="control-label required">Enter your search term:</label>
-                <input type="text" id="searchTerm" class="form-control input-sm" formControlName="searchTerm">
-                <app-field-error-display [displayError]="isFieldValid('searchTerm')" errorMsg="Please enter a search term"></app-field-error-display>
+                <label for="searchTerm" class="control-label required"
+                  >Enter your search term:</label
+                >
+                <input
+                  type="text"
+                  id="searchTerm"
+                  class="form-control input-sm"
+                  formControlName="searchTerm"
+                />
+                <app-field-error-display
+                  [displayError]="isFieldValid('searchTerm')"
+                  errorMsg="Please enter a search term"
+                ></app-field-error-display>
               </div>
             </div>
-
           </form>
 
-          <br>
+          <br />
 
-          <button class="btn btn-primary" (click)="getEvents()">Get Events</button>
+          <button class="btn btn-primary" (click)="getEvents()">
+            Get Events
+          </button>
 
-          <br><br>
+          <br /><br />
 
-          <label *ngIf="events.length > 0" for="searchTerm" class="control-label required">Click on the items
-            below to check for tickets</label>
+          <label
+            *ngIf="events.length > 0"
+            for="searchTerm"
+            class="control-label required"
+            >Click on the items below to check for tickets</label
+          >
 
-          <br><br>
+          <br /><br />
 
-          <div *ngFor="let event of events">
-            <button class="btn btn-block" style="background: #5258ff; color: white">{{ event.dates.start.localDate }}
-              {{event.name}} - {{
-              event.dates.timezone
-              }}
+          <div *ngFor="let event of events; let i = index">
+            <button
+              class="btn btn-block"
+              style="background: #5258ff; color: white"
+              (click)="buttonExpanded[i] = !buttonExpanded[i]"
+            >
+              {{ event.dates.start.localDate }} {{ event.name }} -
+              {{ event.dates.timezone }}
             </button>
-            <br>
-          </div>
 
+            <event-details
+              *ngIf="buttonExpanded[i]"
+              [event]="event"
+            ></event-details>
+
+            <br />
+          </div>
         </div>
       </div>
       <div class="col"></div>
