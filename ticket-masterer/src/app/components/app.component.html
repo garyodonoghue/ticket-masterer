@@ -54,7 +54,8 @@
           <div *ngFor="let event of events; let i = index">
             <button
               class="btn btn-block"
-              style="background: #5258ff; color: white; font-weight: bold"
+              style="background: #5258ff; color: white; font-weight: bold; white-space: normal !important;
+              word-wrap: break-word;"
               (click)="buttonExpanded[i] = !buttonExpanded[i]"
             >
               {{ event.dates.start.localDate }} {{ event.name }} -
