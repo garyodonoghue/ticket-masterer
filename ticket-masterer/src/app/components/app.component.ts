@@ -24,7 +24,7 @@ export class AppComponent {
 
   ngOnInit() {
     this.form = this.formBuilder.group({
-      searchTerm: [null, Validators.required]
+      keyword: [null, Validators.required]
     });
   }
 
@@ -32,7 +32,7 @@ export class AppComponent {
     if (this.form.valid) {
       return this.ticketMasterService
         .getListEvents(
-          this.form.get("searchTerm").value          
+          this.form.get("keyword").value          
         )
         .subscribe((data: JSON) => {
           this.events = data["_embedded"]["events"];

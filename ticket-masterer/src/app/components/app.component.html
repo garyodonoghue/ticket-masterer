@@ -15,19 +15,19 @@
           -->
 
           <form class="form-horizontal" [formGroup]="form">
-            <div class="form-group" [ngClass]="displayFieldCss('searchTerm')">
+            <div class="form-group" [ngClass]="displayFieldCss('keyword')">
               <div class="col-sm-12">
-                <label for="searchTerm" class="control-label required"
+                <label for="keyword" class="control-label required"
                   >Enter your search term:</label
                 >
                 <input
                   type="text"
-                  id="searchTerm"
+                  id="keyword"
                   class="form-control input-sm"
-                  formControlName="searchTerm"
+                  formControlName="keyword"
                 />
                 <app-field-error-display
-                  [displayError]="isFieldValid('searchTerm')"
+                  [displayError]="isFieldValid('keyword')"
                   errorMsg="Please enter a search term"
                 ></app-field-error-display>
               </div>
@@ -44,7 +44,7 @@
 
           <label
             *ngIf="events.length > 0"
-            for="searchTerm"
+            for="keyword"
             class="control-label required"
             >Click on the items below to check for tickets</label
           >

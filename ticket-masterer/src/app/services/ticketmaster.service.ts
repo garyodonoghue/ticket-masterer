@@ -10,20 +10,18 @@ export class TicketmasterService {
 
   apiKey = "woQznFCtl6peWX1JV0uaHc7DhABAVdFt";
 
-  getListEvents(searchTerm: String): Observable<JSON> {
+  getListEvents(keyword: String): Observable<JSON> {
     return this.http.get<JSON>(
-      "https://app.ticketmaster.com/discovery/v2/events.json?apikey=" +
-        this.apiKey +
-        "&keyword=" +
-        searchTerm
+      "https://ticket-masterer-service.com:8083/listEvents" +
+        "?keyword=" +
+        keyword
     );
   }
 
   getEventDetails(eventId: string): Observable<JSON> {
     return this.http.get<JSON>(
-      "https://app.ticketmaster.com/inventory-status/v1/availability?apikey=" +
-        this.apiKey +
-        "&events=" +
+      "https://ticket-masterer-service.com:8083/getEventDetails" +
+        "?events=" +
         eventId
     );
   }
